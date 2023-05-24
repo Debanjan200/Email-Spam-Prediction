@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style/style.css') }}">
+  <!-- <link rel= "stylesheet" type= "text/css" href= "style.css"> -->
+
+  <title>Diabetes Prediction</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="data:image/jpeg;base64,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" alt="rocket_contact"/>
+            </div>
+            <form action="{{ url_for('predict')}}" method="post" enctype="multipart/form-data">
+                <h3>Predict Email Spam or Ham</h3>
+               <div class="row">
+                    <div class="col-md-10">
+
+                        <div class="form-group">
+                            <label for="floatingTextarea2">Comments</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" name="email" id="floatingTextarea2" style="height: 200px" required></textarea>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact btn btn-outline-info" value="Send Message"/>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="col-md-10">
+                    {% if prediction==0 %}
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div>
+                            <p>
+                                My Prediction:
+                                {{st}}
+                            </p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                        <div>
+                        Predicted: {{st}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+                
+            </form>
+            
+</div>
+
+
+</body>
+
+</html>
